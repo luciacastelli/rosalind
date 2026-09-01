@@ -1,23 +1,25 @@
-with open("datasets/rosalind_gc.txt", "r") as file:
-    data = file.readlines()
+# Computing GC content
+from re import search
+from sys import exit
 
-    seqs = {}
+sequences = {}
 
-    for line in data:
-        line = line.strip()
-        if '>' in line:
-            seq = ""
-            seqname = line
+with open("in.txt", "r") as file:
+    for line in file:
+        if matches := search(r"^>(Rosalind_\d{4})", line.strip()):
+            sequence_name = matches.groups(1)[0]
+            sequences[sequence_name] = ""
         else:
-            seq = seq + line
-        seqs[seqname] = seq
+            sequences[sequence_name] += line.strip()
 
-for key, value in seqs.items():
-    percent = 0
-    percent = (value.count("G") + value.count("C")) / len(value) * 100
-    print(key)
-    print(percent)
+for name, seq in sequences.items():
+    percent = (seq.count("G") + seq.count("C")) / len(seq) * 100
+    sequences[name] = percent
 
-# Write output file
-with open("outputs/gc_out.txt", "w") as file:
-    file.write()
+with open("out.txt", "w") as file:
+    i = 0
+    for key, value in sorted(sequences.items(), key = lambda item: item[1], reverse = True):
+        if i == 1:
+            exit()
+        file.write(f"{key}\n{value}\n")
+        i += 1
