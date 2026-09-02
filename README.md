@@ -45,6 +45,7 @@ Some problems may only contain the Python solution if an input/output file is no
 | IPRB    | Mendel's First Law               | [`iprb/`](./iprb/) |
 | PROT    | Translating RNA into Protein     | [`prot/`](./prot/) |
 | SUBS    | Finding a Motif in DNA           | [`subs/`](./subs/) |
+| FIBD    | Mortal Fibonacci Rabbits         | [`fibd/`](./fibd/) |
 
 *The table will be expanded as I solve more problems.*
 
